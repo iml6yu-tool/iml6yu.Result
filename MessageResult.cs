@@ -75,7 +75,7 @@ namespace iml6yu.Result
         /// <returns></returns>
         public static MessageResult Success(ResultType result, string message = null)
         {
-            return new MessageResult((int)result, true, message ?? typeof(lang).GetProperty("Code" + (int)result, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "");
+            return new MessageResult((int)result, true, message ?? "success");// typeof(lang).GetProperty("Code" + (int)result, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "");
         }
         /// <summary>
         /// 失败
@@ -93,7 +93,7 @@ namespace iml6yu.Result
         /// <returns></returns>
         public static MessageResult Failed(int code, string message, Exception ex)
         {
-            return new MessageResult(code, false, message ?? typeof(lang).GetProperty("Code" + code, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", ex);
+            return new MessageResult(code, false, message ?? ""); // typeof(lang).GetProperty("Code" + code, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", ex);
         }
 
         /// <summary>

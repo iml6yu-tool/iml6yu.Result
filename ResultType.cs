@@ -8,13 +8,39 @@ namespace iml6yu.Result
     public enum ResultType
     {
         ///<summary>
+        ///	成功
+        ///</summary>
+        Success = 200,
+        ///<summary>
         ///	操作成功，但并没有引起数据变化
         ///</summary>
         Code201 = 201,
         ///<summary>
         ///	操作已接受，等待后台异步处理
         ///</summary>
-        Code202 = 202,
+        Code202 = 202, 
+
+        ///<summary>
+        ///参数错误
+        ///</summary>
+        ParameterError = 300,
+        ///<summary>
+        ///数据重复
+        ///</summary>
+        RepetitiveData = 301,
+        ///<summary>
+        ///参数验证失败
+        ///</summary>
+        VerifyFailed = 302,
+        ///<summary>
+        ///验证码错误
+        ///</summary>
+        VerifyCodeError = 303,
+        ///<summary>
+        ///验证码已超时
+        ///</summary>
+        VerifyCodeTimeOut = 304,
+
         ///<summary>
         ///	错误请求
         ///</summary>
@@ -32,18 +58,54 @@ namespace iml6yu.Result
         ///</summary>
         Code404 = 404,
         ///<summary>
+        ///当前数据不存在
+        ///</summary>
+        NotFind = 405,
+        ///<summary>
+        ///	请求的资源大于服务器允许的大小
+        ///</summary>
+        Code406 = 406,
+        ///<summary>
+        ///	请求资源不支持请求项目格式
+        ///</summary>
+        Code407 = 407,
+        ///<summary>
         ///	客户端没有在用户指定的的时间内完成请求
         ///</summary>
         Code408 = 408,
         ///<summary>
-        ///	请求的资源大于服务器允许的大小
+        ///登录失败
         ///</summary>
-        Code413 = 413,
+        SignError = 410,
         ///<summary>
-        ///	请求资源不支持请求项目格式
+        ///用户凭证已失效
         ///</summary>
-        Code415 = 415,
+        VerifyTokenFailed = 411,
+        ///<summary>
+        ///当前用户信息未审核
+        ///</summary>
+        AccountNotChecked = 412,
+        ///<summary>
+        ///当前用户信息已失效
+        ///</summary>
+        SignInfoDisable = 413,
+        ///<summary>
+        ///当前账户不存在
+        ///</summary>
+        AccountNotFind = 414,
+        ///<summary>
+        ///无权访问此地址
+        ///</summary>
+        NotAuthrith = 415,
+        ///<summary>
+        ///当前账户已存在
+        ///</summary>
+        AccountExisted = 420,
 
+        ///<summary>
+        ///	失败
+        ///</summary>
+        Failed = 500,
         ///<summary>
         ///	服务器不支持请求的函数
         ///</summary>
@@ -65,77 +127,18 @@ namespace iml6yu.Result
         ///</summary>
         Code505 = 505,
         ///<summary>
-        ///	失败
+        ///该功能未实现
         ///</summary>
-        Failed = 500,
+        NotImplemented = 506,
         ///<summary>
-        ///	成功
+        ///服务器未知异常
         ///</summary>
-        Success = 200,
-
-         
-        ///<summary>
-        ///参数错误
-        ///</summary>
-        ParameterError = 300,
-        ///<summary>
-        ///数据重复
-        ///</summary>
-        RepetitiveData = 301,
-        ///<summary>
-        ///参数验证失败
-        ///</summary>
-        VerifyFailed = 302,
-        ///<summary>
-        ///验证码错误
-        ///</summary>
-        VerifyCodeError = 303,
-        ///<summary>
-        ///验证码已超时
-        ///</summary>
-        VerifyCodeTimeOut = 304,
+        ServerUnKonwError = 510,
         ///<summary>
         ///系统数据配置异常
         ///</summary>
         SystemConfigError = 550,
 
-        ///<summary>
-        ///登录失败
-        ///</summary>
-        SignError = 410,
-        ///<summary>
-        ///用户凭证已失效
-        ///</summary>
-        VerifyTokenFailed = 411,
-        ///<summary>
-        ///当前账户已存在
-        ///</summary>
-        AccountExisted = 420,
-        ///<summary>
-        ///当前数据不存在
-        ///</summary>
-        NotFind = 405,
-        ///<summary>
-        ///当前用户信息未审核
-        ///</summary>
-        AccountNotChecked = 412,
-        ///<summary>
-        ///当前用户信息已失效
-        ///</summary>
-        SignInfoDisable = 413,
-        ///<summary>
-        ///当前账户不存在
-        ///</summary>
-        AccountNotFind = 414,
-        ///<summary>
-        ///无权访问此地址
-        ///</summary>
-        NotAuthrith = 415,
-
-        ///<summary>
-        ///服务器未知异常
-        ///</summary>
-        ServerUnKonwError = 510,
         ///<summary>
         ///网络原因导致结果不正确请重新操作
         ///</summary>
@@ -148,9 +151,52 @@ namespace iml6yu.Result
         ///接口数据异常
         ///</summary>
         ServerInterfaceError = 602,
-        ///<summary>
-        ///该功能未实现
-        ///</summary>
-        NotImplemented = 506
+
+        /// <summary>
+        /// 数据库不支持
+        /// </summary>
+        DatabaseNotSupport = 700,
+        /// <summary>
+        /// 数据库连接错误
+        /// </summary>
+        DatabaseConnectionError = 701,
+        /// <summary>
+        /// 数据库连接超时
+        /// </summary>
+        DatabaseConnectionTimeout = 702,
+        /// <summary>
+        /// 数据库命令执行超时
+        /// </summary>
+        DatabaseCommandTimeout = 704,
+        /// <summary>
+        /// 数据库sql脚本错误
+        /// </summary>
+        DatabaseSqlError = 740,
+
+        /// <summary>
+        /// 设备连接失败
+        /// </summary>
+        DeviceConnectionError = 800,
+        /// <summary>
+        /// 中间件读取失败 
+        /// </summary>
+        DeviceReadError = 801,
+        /// <summary>
+        /// 中间件写入失败 
+        /// </summary>
+        DeviceWriteError = 802,
+
+        /// <summary>
+        /// 中间件连接失败 一般指mq redis等
+        /// </summary>
+        MiddlewareConnectionError = 900,
+        /// <summary>
+        /// 中间件读取失败 
+        /// </summary>
+        MiddlewareReadError = 901,
+        /// <summary>
+        /// 中间件写入失败 
+        /// </summary>
+        MiddlewareWriteError = 902,
     }
 }

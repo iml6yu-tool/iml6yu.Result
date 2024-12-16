@@ -31,13 +31,13 @@ namespace iml6yu.Result
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <param name="error"></param>
-        public CollectionResult(int code, bool state, string message, List<TData> datas, int total, int totalPage, int pageIndex, int pageSize, Exception error = null)
+        public CollectionResult(int code, bool state, string message, List<TData> data, int total, int totalPage, int pageIndex, int pageSize, Exception error = null)
         {
             Code = code;
             State = state;
             Message = message;
             Error = error;
-            Datas = datas;
+            Data = data;
             Total = total;
             TotalPage = totalPage;
             PageIndex = pageIndex;
@@ -74,7 +74,7 @@ namespace iml6yu.Result
         /// <summary>
         /// 数据
         /// </summary> 
-        public List<TData> Datas { get; set; }
+        public List<TData> Data { get; set; }
         /// <summary>
         /// 总数居量
         /// </summary>

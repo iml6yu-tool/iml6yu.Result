@@ -12,11 +12,11 @@
 	  <Product>iml6yu.Results</Product>
 	  <Description>结果帮助类，统一接口返回结果类型</Description>
 	  <PackageTags>result;iml6yu</PackageTags>
-	  <PackageReleaseNotes>支持中文、英文的结果展示</PackageReleaseNotes>
+	  <PackageReleaseNotes>支持中文结果展示</PackageReleaseNotes>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	  <PackageIcon>logo_128.jpg</PackageIcon>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	</PropertyGroup> 
 	<ItemGroup>
 	  <None Include="..\LICENSE">

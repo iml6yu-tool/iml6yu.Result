@@ -32,7 +32,7 @@ namespace iml6yu.Result
             State = state;
             Message = message;
             Error = error;
-            Datas = datas;
+            Data = datas;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace iml6yu.Result
         /// <summary>
         /// 数据
         /// </summary> 
-        public TData Datas { get; set; }
+        public TData Data { get; set; }
 
         /// <summary>
         /// 成功
