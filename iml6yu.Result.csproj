@@ -1,48 +1,63 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
-	<PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6;net8</TargetFrameworks>
-	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
-	  <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <PackageId>iml6yu.Results</PackageId>
-	  <Title>iml6yu.Results</Title>
-	  <Authors>iml6yu</Authors>
-	  <Company>iml6yu</Company>
-	  <Product>iml6yu.Results</Product>
-	  <Description>结果帮助类，统一接口返回结果类型</Description>
-	  <PackageTags>result;iml6yu</PackageTags>
-	  <PackageReleaseNotes>支持中文结果展示</PackageReleaseNotes>
-	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
-	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-	  <PackageIcon>logo_128.jpg</PackageIcon>
-	  <Version>1.0.2</Version>
-	</PropertyGroup> 
-	<ItemGroup>
-	  <None Include="..\LICENSE">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\logo_128.jpg">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>  
-	<ItemGroup>
-		<Compile Update="i18n\lang.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>lang.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Update="i18n\lang.en-US.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
-		<EmbeddedResource Update="i18n\lang.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>lang.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup> 
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net5;net6;net7;net8;net9</TargetFrameworks>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>iml6yu.Results</PackageId>
+    <Title>iml6yu.Results</Title>
+    <Authors>iml6yu</Authors>
+    <Company>iml6yu</Company>
+    <Product>iml6yu.Results</Product>
+    <Description>结果帮助类，统一接口返回结果类型</Description>
+    <PackageTags>result;iml6yu;统一结果;comm;</PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageIcon>logo_128.jpg</PackageIcon>
+    <Version>1.0.6</Version>
+    <Copyright>©iml6yu</Copyright>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\logo_128.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="i18n\lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="i18n\lang.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="i18n\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
 </Project>

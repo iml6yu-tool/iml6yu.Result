@@ -2,6 +2,7 @@
 using iml6yu.Result.i18n;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace iml6yu.Result
 {
@@ -9,7 +10,7 @@ namespace iml6yu.Result
     /// 数据列表结果
     /// @author 刘会东
     /// </summary>
-    public class CollectionResult<TData> : EventArgs, IResult where TData : class
+    public class CollectionResult<TData> : EventArgs, IResult  
     {
 
         /// <summary>
@@ -25,7 +26,7 @@ namespace iml6yu.Result
         /// <param name="code"></param>
         /// <param name="state"></param>
         /// <param name="message"></param>
-        /// <param name="datas"></param>
+        /// <param name="data"></param>
         /// <param name="total"></param>
         /// <param name="totalPage"></param>
         /// <param name="pageIndex"></param>
@@ -69,6 +70,7 @@ namespace iml6yu.Result
         /// <summary>
         /// 异常信息
         /// </summary>
+        [JsonIgnore]
         public Exception Error { get; set; }
 
         /// <summary>
@@ -104,10 +106,11 @@ namespace iml6yu.Result
         /// <param name="pagesize">入参中的pagesize</param>
         /// <param name="datas">数据</param>
         /// <param name="total">总记录数</param>
+        /// <param name="message"></param>
         /// <returns></returns>
-        public static CollectionResult<TData> Success(int pageindex, int pagesize, List<TData> datas, int total)
+        public static CollectionResult<TData> Success(int pageindex, int pagesize, List<TData> datas, int total, string message = null)
         {
-            return new CollectionResult<TData>(200, true, lang.Success, datas, total, (int)Math.Ceiling(total * 1.0d / pagesize), pageindex, pagesize);
+            return new CollectionResult<TData>(200, true, (message ?? "success"), datas, total, (total == 0 ? 0 : (int)Math.Ceiling(total * 1.0d / pagesize)), pageindex, pagesize);
         }
 
         /// <summary>
@@ -116,7 +119,7 @@ namespace iml6yu.Result
         /// <returns></returns>
         public static CollectionResult<TData> Success(int pageindex, int pagesize, List<TData> datas, int total, ResultType result, string message = null)
         {
-            return new CollectionResult<TData>((int)result, true, message ?? typeof(lang).GetProperty("Code" + (int)result, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", datas, total, (int)Math.Ceiling(total * 1.0d / pagesize), pageindex, pagesize);
+            return new CollectionResult<TData>((int)result, true, (message ?? "success"), datas, total, (total == 0 ? 0 : (int)Math.Ceiling(total * 1.0d / pagesize)), pageindex, pagesize);
         }
 
         /// <summary>
@@ -128,7 +131,7 @@ namespace iml6yu.Result
         /// <returns></returns>
         public static CollectionResult<TData> Failed(int code, string message, Exception ex = null)
         {
-            return new CollectionResult<TData>(code, false, message ?? typeof(lang).GetProperty("Code" + code, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", null, 0, 0, 0, 0, ex);
+            return new CollectionResult<TData>(code, false, message ?? "", null, 0, 0, 0, 0, ex);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 
 using iml6yu.Result.i18n;
 using System;
+using System.Text.Json.Serialization;
 
 namespace iml6yu.Result
 {
@@ -60,6 +61,7 @@ namespace iml6yu.Result
         /// <summary>
         /// 异常信息
         /// </summary>
+        [JsonIgnore]
         public Exception Error { get; set; }
 
         /// <summary>
@@ -82,7 +84,7 @@ namespace iml6yu.Result
         /// <returns></returns>
         public static DataResult<TData> Success(TData data, ResultType result, string message = null)
         {
-            return new DataResult<TData>((int)result, true, message ?? typeof(lang).GetProperty("Code" + (int)result, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", data);
+            return new DataResult<TData>((int)result, true, message ?? "", data);
         }
 
         /// <summary>
@@ -95,7 +97,7 @@ namespace iml6yu.Result
         /// <returns></returns>
         public static DataResult<TData> Failed(int code, string message, Exception ex = null, TData data = default(TData))
         {
-            return new DataResult<TData>(code, false, message ?? typeof(lang).GetProperty("Code" + code, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", data, ex);
+            return new DataResult<TData>(code, false, message ?? "", data, ex);
         }
 
 
@@ -107,6 +109,7 @@ namespace iml6yu.Result
         /// <param name="result">  </param>
         /// <param name="message"></param>
         /// <param name="ex"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
         public static DataResult<TData> Failed(ResultType result, string message, Exception ex = null, TData data = default(TData))
         {

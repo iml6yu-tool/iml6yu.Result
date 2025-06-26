@@ -1,5 +1,6 @@
 
 using System;
+using System.Text.Json.Serialization;
 
 namespace iml6yu.Result
 {
@@ -33,6 +34,7 @@ namespace iml6yu.Result
         /// <summary>
         /// “Ï≥£–≈œ¢
         /// </summary>
+        [JsonIgnore]
         Exception Error { get; set; }
 
     }

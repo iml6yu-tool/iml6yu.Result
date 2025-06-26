@@ -1,6 +1,7 @@
 
 using iml6yu.Result.i18n;
 using System;
+using System.Text.Json.Serialization;
 
 namespace iml6yu.Result
 {
@@ -58,6 +59,7 @@ namespace iml6yu.Result
         /// <summary>
         /// 异常信息
         /// </summary>
+        [JsonIgnore]
         public Exception Error { get; set; }
 
         /// <summary>
@@ -91,9 +93,9 @@ namespace iml6yu.Result
         /// <param name="message"></param>
         /// <param name="ex"></param>
         /// <returns></returns>
-        public static MessageResult Failed(int code, string message, Exception ex)
+        public static MessageResult Failed(int code, string message, Exception ex = null)
         {
-            return new MessageResult(code, false, message ?? ""); // typeof(lang).GetProperty("Code" + code, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.GetProperty)?.GetValue(null)?.ToString() ?? "", ex);
+            return new MessageResult(code, false, message ?? "", ex);
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace iml6yu.Result
         /// <param name="message"></param>
         /// <param name="ex"></param>
         /// <returns></returns>
-        public static MessageResult Failed(ResultType result, string message, Exception ex)
+        public static MessageResult Failed(ResultType result, string message, Exception ex = null)
         {
             return Failed((int)result, message, ex);
         }
